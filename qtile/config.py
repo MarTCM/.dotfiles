@@ -52,7 +52,9 @@ keys = [
              ),
          Key([mod], "b",
              lazy.spawn(myBrowser),
-             desc='Firefox'
+             desc='Firefox'),
+         Key([mod], "v",
+             lazy.spawn("nvim")
              ),
          Key([mod], "Tab",
              lazy.next_layout(),
@@ -169,7 +171,6 @@ for i in groups:
             #     desc="move focused window to group {}".format(i.name)),
         ],
     )
-    
 
 layout_theme = {"border_width": 2,
                 "margin": 20,
@@ -288,6 +289,17 @@ screens = [
                        background = colors[2],
                        padding = 0
                        ),
+              widget.Mpris2(
+                       name='spotify',
+                       objname="org.mpris.MediaPlayer2.spotify",
+                       foreground = "02cccc",
+                       background = "111a24",
+                       display_metadata = ['xesam:title'],
+                       scroll_wait_intervals = 1000000,
+                       scroll_chars = 50,
+                       #scroll_chars=None,
+                       **widget_defaults
+                            ),
               widget.Systray(
                        background = colors[2],
                        padding = 5
