@@ -37,7 +37,6 @@ from libqtile.utils import guess_terminal
 from typing import List  # noqa: F401from typing import List  # noqa: F401
 
 mod = "mod4"
-terminal = "alacritty"
 myTerm = "alacritty"      # My terminal of choice
 myBrowser = "firefox" # My browser of choice
 
@@ -143,14 +142,7 @@ keys = [
          Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
          #Script through keybind
          Key([mod], "p", lazy.spawn("sh /home/martcm/.config/qtile/autostart.sh"), lazy.restart())
-         
 ]
-
-@hook.subscribe.startup_once
-def autostart():
-    # home = os.path.expanduser('~')
-    lazy.spawn("sh /home/martcm/.config/qtile/autostart.sh")
-
 
 groups = [Group(i) for i in "123456"]
 
@@ -186,7 +178,6 @@ layout_theme = {"border_width": 2,
                 }
 
 layouts = [
-    #layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
     layout.MonadTall(**layout_theme),
     layout.Max(**layout_theme),
     layout.Stack(num_stacks=2),
@@ -224,18 +215,6 @@ layouts = [
     # layout.VerticalTile(),
     # layout.Zoomy(),
 ]
-
-
-#colors = [["#282c34", "#282c34"],
- #         ["#1c1f24", "#1c1f24"],
-  #        ["#dfdfdf", "#dfdfdf"],
-   #       ["#ff6c6b", "#ff6c6b"],
-   #       ["#98be65", "#98be65"],
-    #      ["#da8548", "#da8548"],
-     #     ["#51afef", "#51afef"],
-      #    ["#c678dd", "#c678dd"],
-       #   ["#46d9ff", "#46d9ff"],
-        #  ["#a9a1e1", "#a9a1e1"]]
         
 colors = [["#02cccc","#02cccc"],
          ["#0e3f46","#0e3f46"],
@@ -349,8 +328,6 @@ screens = [
             ],
             24,
             opacity = 0.9,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
     ),
 ]
