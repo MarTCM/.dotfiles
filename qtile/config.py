@@ -141,47 +141,16 @@ keys = [
          Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
          Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
          Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
+         #Script through keybind
+         Key([mod], "p", lazy.spawn("sh /home/martcm/.config/qtile/autostart.sh"), lazy.restart())
          
-         # Dmenu scripts launched using the key chord SUPER+p followed by 'key'
-         KeyChord([mod], "p", [
-             Key([], "e",
-                 lazy.spawn("./dmscripts/dm-confedit"),
-                 desc='Choose a config file to edit'
-                 ),
-             Key([], "i",
-                 lazy.spawn("./dmscripts/dm-maim"),
-                 desc='Take screenshots via dmenu'
-                 ),
-             Key([], "k",
-                 lazy.spawn("./dmscripts/dm-kill"),
-                 desc='Kill processes via dmenu'
-                 ),
-             Key([], "l",
-                 lazy.spawn("./dmscripts/dm-logout"),
-                 desc='A logout menu'
-                 ),
-             Key([], "m",
-                 lazy.spawn("./dmscripts/dm-man"),
-                 desc='Search manpages in dmenu'
-                 ),
-             Key([], "o",
-                 lazy.spawn("./dmscripts/dm-bookman"),
-                 desc='Search your qutebrowser bookmarks and quickmarks'
-                 ),
-             Key([], "r",
-                 lazy.spawn("./dmscripts/dm-reddit"),
-                 desc='Search reddit via dmenu'
-                 ),
-             Key([], "s",
-                 lazy.spawn("./dmscripts/dm-websearch"),
-                 desc='Search various search engines via dmenu'
-                 ),
-             Key([], "p",
-                 lazy.spawn("passmenu"),
-                 desc='Retrieve passwords with dmenu'
-                 )
-         ])
 ]
+
+@hook.subscribe.startup_once
+def autostart():
+    # home = os.path.expanduser('~')
+    lazy.spawn("sh /home/martcm/.config/qtile/autostart.sh")
+
 
 groups = [Group(i) for i in "123456"]
 
@@ -208,6 +177,7 @@ for i in groups:
             #     desc="move focused window to group {}".format(i.name)),
         ],
     )
+    
 
 layout_theme = {"border_width": 2,
                 "margin": 20,
@@ -417,11 +387,6 @@ reconfigure_screens = True
 # focus, should we respect this or not?
 auto_minimize = True
 
-@hook.subscribe.startup
-def autostart():
-    subprocess.run(os.path('/home/.config/qtile/autostart.sh'))
-    #home = os.path.expanduser('~/.config/qtile/autostart.sh')
-
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting
@@ -430,4 +395,4 @@ def autostart():
 #
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
-wmname = "LG3D"
+wmname = "Qtile"
