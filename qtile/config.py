@@ -53,8 +53,8 @@ keys = [
          Key([mod], "b",
              lazy.spawn(myBrowser),
              desc='Firefox'),
-         Key([mod], "v",
-             lazy.spawn("nvim")
+         Key([mod], "s",
+             lazy.spawn("spotify")
              ),
          Key([mod], "Tab",
              lazy.next_layout(),
@@ -239,6 +239,20 @@ screens = [
             [
                 widget.Sep(
                        linewidth = 0,
+                       padding = 4,
+                       foreground = colors[2],
+                       background = colors[2]
+                       ),
+                widget.TextBox(
+                       text = '',
+                       font = "Ubuntu Mono",
+                       background = colors[2],
+                       foreground = colors[0],
+                       padding = 0,
+                       fontsize = 30
+                       ),
+                widget.Sep(
+                       linewidth = 0,
                        padding = 6,
                        foreground = colors[2],
                        background = colors[2]
@@ -289,6 +303,14 @@ screens = [
                        background = colors[2],
                        padding = 0
                        ),
+              widget.TextBox(
+                       text = '',
+                       font = "Ubuntu Mono",
+                       background = colors[2],
+                       foreground = colors[0],
+                       padding = 0,
+                       fontsize = 14
+                       ),
               widget.Mpris2(
                        name='spotify',
                        objname="org.mpris.MediaPlayer2.spotify",
@@ -296,7 +318,7 @@ screens = [
                        background = "111a24",
                        display_metadata = ['xesam:title'],
                        scroll_wait_intervals = 1000000,
-                       scroll_chars = 50,
+                       scroll_chars = 100,
                        #scroll_chars=None,
                        **widget_defaults
                             ),
